@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,18 +13,19 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E562103B-C7F3-4BD5-831A-28E27252736A}</ProjectGuid>
     <RootNamespace>ExternalDLL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -130,6 +131,68 @@
     <ClCompile Include="StudentExtraction.cpp" />
     <ClCompile Include="StudentLocalization.cpp" />
     <ClCompile Include="StudentPreProcessing.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Debug\DefaultExtraction.obj" />
+    <Object Include="Debug\DefaultLocalization.obj" />
+    <Object Include="Debug\DefaultPreProcessing.obj" />
+    <Object Include="Debug\DLLExecution.obj" />
+    <Object Include="Debug\export.obj" />
+    <Object Include="Debug\Feature.obj" />
+    <Object Include="Debug\FeatureMap.obj" />
+    <Object Include="Debug\GrayscaleAlgorithm.obj" />
+    <Object Include="Debug\HereBeDragons.obj" />
+    <Object Include="Debug\Image.obj" />
+    <Object Include="Debug\ImageFactory.obj" />
+    <Object Include="Debug\ImageIO.obj" />
+    <Object Include="Debug\IntensityImage.obj" />
+    <Object Include="Debug\IntensityImagePrivate.obj" />
+    <Object Include="Debug\IntensityImageStudent.obj" />
+    <Object Include="Debug\Main.obj" />
+    <Object Include="Debug\PostProcessing.obj" />
+    <Object Include="Debug\Representation.obj" />
+    <Object Include="Debug\RGBImage.obj" />
+    <Object Include="Debug\RGBImagePrivate.obj" />
+    <Object Include="Debug\RGBImageStudent.obj" />
+    <Object Include="Debug\SonnetXVIII.obj" />
+    <Object Include="Debug\StudentExtraction.obj" />
+    <Object Include="Debug\StudentLocalization.obj" />
+    <Object Include="Debug\StudentPreProcessing.obj" />
+    <Object Include="Release\DefaultExtraction.obj" />
+    <Object Include="Release\DefaultLocalization.obj" />
+    <Object Include="Release\DefaultPreProcessing.obj" />
+    <Object Include="Release\DLLExecution.obj" />
+    <Object Include="Release\export.obj" />
+    <Object Include="Release\Feature.obj" />
+    <Object Include="Release\FeatureMap.obj" />
+    <Object Include="Release\GrayscaleAlgorithm.obj" />
+    <Object Include="Release\HereBeDragons.obj" />
+    <Object Include="Release\Image.obj" />
+    <Object Include="Release\ImageFactory.obj" />
+    <Object Include="Release\ImageIO.obj" />
+    <Object Include="Release\IntensityImage.obj" />
+    <Object Include="Release\IntensityImagePrivate.obj" />
+    <Object Include="Release\IntensityImageStudent.obj" />
+    <Object Include="Release\Main.obj" />
+    <Object Include="Release\PostProcessing.obj" />
+    <Object Include="Release\Representation.obj" />
+    <Object Include="Release\RGBImage.obj" />
+    <Object Include="Release\RGBImagePrivate.obj" />
+    <Object Include="Release\RGBImageStudent.obj" />
+    <Object Include="Release\SonnetXVIII.obj" />
+    <Object Include="Release\StudentExtraction.obj" />
+    <Object Include="Release\StudentLocalization.obj" />
+    <Object Include="Release\StudentPreProcessing.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Debug\vc141.idb" />
+    <None Include="Debug\vc141.pdb" />
+    <None Include="Release\vc141.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Debug\ExternalDLL.log" />
+    <Text Include="Release\ExternalDLL.Build.CppClean.log" />
+    <Text Include="Release\ExternalDLL.log" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
