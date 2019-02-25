@@ -1,0 +1,14 @@
+
+*.obj
+*.vspx
+*.diagsession
+*.vsps
+*.ipch
+*.png
+source/ExternalDLL/.vs/ExternalDLL/v15/.suo
+*.db
+*.sln
+source/ExternalDLL/ExternalDLL/.vs/ExternalDLL2017/v15/.suo
+*.opendb
+*.psess
+*.vcxproj

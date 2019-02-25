@@ -3,7 +3,7 @@
 * Unauthorized copying of this file, via any medium is strictly prohibited
 * Proprietary and confidential
 */
-
+#include <ctime>
 #include <iostream> //std::cout
 #include "ImageIO.h" //Image load and save functionality
 #include "HereBeDragons.h"
@@ -13,20 +13,21 @@
 void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
-int main(int argc, char * argv[]) {
-
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
+int main2(int argc, char * argv[]) {
+	//std::clock_t    start;
+	//start = std::clock();
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
-	ImageIO::debugFolder = "D:\\Users\\Rolf\\Downloads\\FaceMinMin";
-	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
+	ImageIO::debugFolder = "C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C";
+	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
 
 
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:\\ti-software\\HU-Vision-Vera-Florian-V2C\\testsets\\Set A\\TestSet Images\\child-1.jpg", *input)) {
+	if (!ImageIO::loadImage("C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/child-1.jpg", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
@@ -42,17 +43,44 @@ int main(int argc, char * argv[]) {
 		std::cout << "Face recognition successful!" << std::endl;
 		std::cout << "Facial parameters: " << std::endl;
 		for (int i = 0; i < 16; i++) {
-			std::cout << (i+1) << ": " << executor->facialParameters[i] << std::endl;
+			std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
 		}
 	}
-
+	//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
 	delete executor;
-	system("pause");
+	//system("pause");
 	return 1;
 }
 
 
+int main(int argc, char * argv[]) {
+	std::clock_t    start;
+	
+	int sum_default = 0;
 
+	ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	for (int i = 0; i < 100; i++) {
+		start = std::clock();
+		main2(argc, argv);
+		sum_default += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
+		//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+	}
+	int sum_student = 0;
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
+	for (int i = 0; i < 100; i++) {
+		start = std::clock();
+		main2(argc, argv);
+		sum_student += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
+		//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+	}
+	
+
+	std::cout << "Average time DEFAULT: " << sum_default / 100  << "ms " << std::endl;
+	std::cout << "Average time STUDENT: " << sum_student / 100  << "ms " << std::endl;
+
+	system("pause");
+	return 1;
+}
 
 
 
