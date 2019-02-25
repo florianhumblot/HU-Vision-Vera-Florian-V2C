@@ -1,12 +1,17 @@
 #include "RGBImageStudent.h"
 
 RGBImageStudent::RGBImageStudent() : RGBImage() {
-	
+	this->pixels = nullptr;
+	this->ptr = nullptr;
+	w = 0;
+	h = 0;
 }
 
 RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.getWidth(), other.getHeight()) {
 	delete[] this->pixels;
-	this->pixels = new RGB[other.getWidth() * other.getHeight()];
+	w = other.w;
+	h = other.h;
+	this->pixels = new RGB[other.w * other.h];
 	this->pixels = other.pixels;
 	this->ptr = &this->pixels[0];
 }
@@ -14,6 +19,8 @@ RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.
 
 RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height) {
 	delete[] this->pixels;
+	w = width;
+	h = height;
 	this->pixels = new RGB[width * height];
 	this->ptr = &this->pixels[0];
 }
@@ -24,13 +31,17 @@ RGBImageStudent::~RGBImageStudent() {
 
 void RGBImageStudent::set(const int width, const int height) {
 	RGBImage::set(width, height);
+	w = width;
+	h = height;
 	delete[] this->pixels;
 	this->pixels = new RGB[width * height];
 	this->ptr = &this->pixels[0];
 }
 
 void RGBImageStudent::set(const RGBImageStudent &other) {
-	RGBImage::set(other.getWidth(), other.getHeight());
+	RGBImage::set(other.w, other.h);
+	w = other.w;
+	h = other.h;
 	delete[] this->pixels;
 	this->pixels = new RGB[other.getWidth()* other.getHeight()];
 	this->pixels = other.pixels;
@@ -38,16 +49,16 @@ void RGBImageStudent::set(const RGBImageStudent &other) {
 }
 
 void RGBImageStudent::setPixel(int x, int y, RGB pixel) {
-	if (x > getWidth() || y > getHeight() || x < 0 || y < 0) {
+	if (x > w || y > h || x < 0 || y < 0) {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
-		*(ptr + ((x  + y * getWidth()))) = pixel;
+		*(ptr + ((x  + y * w))) = pixel;
 	}
 }
 
 void RGBImageStudent::setPixel(int i, RGB pixel) {
-	if (i > (getWidth() * getHeight()) || i < 0) {
+	if (i > (w * h) || i < 0) {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
@@ -56,17 +67,17 @@ void RGBImageStudent::setPixel(int i, RGB pixel) {
 }
 
 RGB RGBImageStudent::getPixel(int x, int y) const {
-	if (x > getWidth() || y > getHeight() || x < 0 || y < 0) {
+	if (x > w || y > h || x < 0 || y < 0) {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
-		return *(ptr + ((x + y * getWidth())));
+		return *(ptr + ((x + y * w)));
 	}
 	return 0;
 }
 
 RGB RGBImageStudent::getPixel(int i) const {
-	if (i > (getWidth() * getHeight()) || i < 0) {
+	if (i > (w * h) || i < 0) {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {

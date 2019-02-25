@@ -11,6 +11,7 @@ class IntensityImageStudent : public IntensityImage {
 private:
 	Intensity * pixels;
 	Intensity * ptr;
+	int w, h;
 public:
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);
