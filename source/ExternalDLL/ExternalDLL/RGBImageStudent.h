@@ -9,7 +9,8 @@
 #include <vector>
 class RGBImageStudent : public RGBImage {
 private:
-	std::vector<RGB> pixels;
+	RGB * pixels;
+	RGB * ptr;
 public:
 
 	RGBImageStudent();
