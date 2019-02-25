@@ -12,3 +12,7 @@ source/ExternalDLL/ExternalDLL/.vs/ExternalDLL2017/v15/.suo
 *.opendb
 *.psess
 *.vcxproj
+*.tlog
+*.log
+*.pdb
+*.pyperf
