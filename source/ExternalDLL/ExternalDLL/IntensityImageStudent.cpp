@@ -2,7 +2,6 @@
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 	this->pixels = nullptr;
-	this->ptr = nullptr;
 	w = 0;
 	h = 0;
 }
@@ -13,7 +12,6 @@ IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other)
 	h = other.h;
 	this->pixels = new Intensity[other.getWidth() * other.getHeight()];
 	this->pixels = other.pixels;
-	this->ptr = &this->pixels[0];
 }
 
 IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
@@ -21,7 +19,6 @@ IntensityImageStudent::IntensityImageStudent(const int width, const int height) 
 	w = width;
 	h = height;
 	this->pixels = new Intensity[width * height];
-	this->ptr = &this->pixels[0];
 }
 
 IntensityImageStudent::~IntensityImageStudent() {
@@ -34,7 +31,6 @@ void IntensityImageStudent::set(const int width, const int height) {
 	h = height;
 	delete[] this->pixels;
 	this->pixels = new Intensity[width * height];
-	this->ptr = &this->pixels[0];
 }
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
@@ -44,7 +40,6 @@ void IntensityImageStudent::set(const IntensityImageStudent &other) {
 	delete[] this->pixels;
 	this->pixels = new Intensity[other.getWidth()* other.getHeight()];
 	this->pixels = other.pixels;
-	this->ptr = &this->pixels[0];
 }
 
 void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
@@ -52,7 +47,7 @@ void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
-		*(ptr + ((x + y * w))) = pixel;
+		*(this->pixels + ((x + y * w))) = pixel;
 	}
 }
 
@@ -61,7 +56,7 @@ void IntensityImageStudent::setPixel(int i, Intensity pixel) {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
-		*(ptr + (i)) = pixel;
+		*(this->pixels + (i)) = pixel;
 	}
 }
 
@@ -70,7 +65,7 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
-		return *(ptr + ((x + y * w)));
+		return *(this->pixels + ((x + y * w)));
 	}
 	return 0;
 }
@@ -80,7 +75,7 @@ Intensity IntensityImageStudent::getPixel(int i) const {
 		int throwError = 0, e = 1 / throwError;
 	}
 	else {
-		return *(ptr + (i));
+		return *(this->pixels + (i));
 	}
 	return 0;
 }

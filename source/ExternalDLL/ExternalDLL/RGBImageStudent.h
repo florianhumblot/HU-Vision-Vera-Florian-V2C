@@ -10,7 +10,6 @@
 class RGBImageStudent : public RGBImage {
 private:
 	RGB * pixels;
-	RGB * ptr;
 	int w, h;
 public:
 
