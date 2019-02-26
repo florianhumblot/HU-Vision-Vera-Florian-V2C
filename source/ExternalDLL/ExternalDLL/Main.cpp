@@ -21,7 +21,7 @@ int main2(int argc, char * argv[]) {
 
 
 	ImageIO::debugFolder = "C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C";
-	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
+	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 
 
@@ -48,6 +48,7 @@ int main2(int argc, char * argv[]) {
 	}
 	//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
 	delete executor;
+	delete input;
 	//system("pause");
 	return 1;
 }
