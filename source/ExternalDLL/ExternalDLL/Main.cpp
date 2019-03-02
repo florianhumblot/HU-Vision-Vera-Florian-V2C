@@ -20,14 +20,14 @@ int main2(int argc, char * argv[]) {
 	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
-	ImageIO::debugFolder = "C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C";
-	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
+	ImageIO::debugFolder = "./";
+	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/child-1.jpg", *input)) {
+	if (!ImageIO::loadImage("../../../testsets/Set A/TestSet Images/child-1.jpg", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
@@ -58,16 +58,16 @@ int main(int argc, char * argv[]) {
 	
 	int sum_default = 0;
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	for (int i = 0; i < 100; i++) {
-		start = std::clock();
-		main2(argc, argv);
-		sum_default += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
-		//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
-	}
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	//for (int i = 0; i < 1; i++) {
+	//	start = std::clock();
+	//	main2(argc, argv);
+	//	sum_default += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
+	//	//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+	//}
 	int sum_student = 0;
 	ImageFactory::setImplementation(ImageFactory::STUDENT);
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 1; i++) {
 		start = std::clock();
 		main2(argc, argv);
 		sum_student += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
