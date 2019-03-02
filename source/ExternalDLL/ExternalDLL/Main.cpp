@@ -48,6 +48,7 @@ int main2(int argc, char * argv[]) {
 	}
 	//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
 	delete executor;
+	delete input;
 	//system("pause");
 	return 1;
 }

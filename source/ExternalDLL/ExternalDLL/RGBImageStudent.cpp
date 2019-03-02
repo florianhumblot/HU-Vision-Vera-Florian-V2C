@@ -24,6 +24,7 @@ RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(w
 
 RGBImageStudent::~RGBImageStudent() {
 	delete[] this->pixels;
+	this->pixels = nullptr;
 }
 
 void RGBImageStudent::set(const int width, const int height) {

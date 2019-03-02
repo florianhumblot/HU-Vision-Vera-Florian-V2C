@@ -23,6 +23,7 @@ IntensityImageStudent::IntensityImageStudent(const int width, const int height) 
 
 IntensityImageStudent::~IntensityImageStudent() {
 	delete[] this->pixels;
+	this->pixels = nullptr;
 }
 
 void IntensityImageStudent::set(const int width, const int height) {
