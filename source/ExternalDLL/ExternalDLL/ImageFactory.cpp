@@ -89,7 +89,7 @@ ImageFactory::Implementation &ImageFactory::STUDENT = ImageFactory::Implementati
 
 
 
-ImageFactory::Implementation * ImageFactory::implementation = NULL;
+ImageFactory::Implementation * ImageFactory::implementation = &ImageFactory::DEFAULT;
 
 void ImageFactory::setImplementation(ImageFactory::Implementation &implementation) {
 	ImageFactory::implementation = &implementation;
