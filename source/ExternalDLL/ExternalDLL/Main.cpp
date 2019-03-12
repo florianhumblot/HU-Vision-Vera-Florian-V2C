@@ -16,9 +16,12 @@ bool executeSteps(DLLExecution * executor);
 int main2(int argc, char * argv[]) {
 	//std::clock_t    start;
 	//start = std::clock();
-	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
-
+	if (argc == 1) {
+		ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	}
+	else {
+		ImageFactory::setImplementation(ImageFactory::STUDENT);
+	}
 
 	ImageIO::debugFolder = "./";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
@@ -53,32 +56,61 @@ int main2(int argc, char * argv[]) {
 	return 1;
 }
 
+int executeAndMeasure(const std::string & imagepath) {
+	std::clock_t    start;
+	start = std::clock();
+	RGBImage * input = ImageFactory::newRGBImage();
+	if (!ImageIO::loadImage(imagepath, *input)) {
+		std::cout << "Image could not be loaded!" << std::endl;
+		system("pause");
+		return 0;
+	}
+	ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+	DLLExecution * executor = new DLLExecution(input);
+	if (executeSteps(executor)) {
+		std::cout << "Face recognition successful!" << std::endl;
+		std::cout << "Facial parameters: " << std::endl;
+		for (int i = 0; i < 16; i++) {
+			std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
+		}
+	}
+	return (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
+}
+
 
 int main(int argc, char * argv[]) {
-	std::clock_t    start;
-	
-	int sum_default = 0;
+	std::ofstream results;
 
-	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//for (int i = 0; i < 1; i++) {
-	//	start = std::clock();
-	//	main2(argc, argv);
-	//	sum_default += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
-	//	//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
-	//}
-	int sum_student = 0;
-	ImageFactory::setImplementation(ImageFactory::STUDENT);
-	for (int i = 0; i < 1; i++) {
-		start = std::clock();
-		main2(argc, argv);
-		sum_student += (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
-		//std::cout << "Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+	std::vector<std::string> filePaths = {
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/child-1.jpg",
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/female-1.png",
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/female-2.png",
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/female-3.png",
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/male-1.png",
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/male-2.png",
+		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/male-3.png",
+	};
+
+	
+	ImageIO::debugFolder = "C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C";
+	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
+
+	ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	results.open("C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/results.csv");
+	results << "File, Implementatie, executiontime\n";
+	for (const auto & path : filePaths) {
+		ImageFactory::setImplementation(ImageFactory::DEFAULT);
+		for (unsigned int i = 0; i < 100; i++) {
+			results << path << ", default, " << executeAndMeasure(path) << "\n";
+		}
+		ImageFactory::setImplementation(ImageFactory::STUDENT);
+		for (unsigned int i = 0; i < 100; i++) {
+			results << path << ", student, " << executeAndMeasure(path) << "\n";
+		}
 	}
-	
 
-	std::cout << "Average time DEFAULT: " << sum_default / 100  << "ms " << std::endl;
-	std::cout << "Average time STUDENT: " << sum_student / 100  << "ms " << std::endl;
 
+	results.close();
 	system("pause");
 	return 1;
 }
