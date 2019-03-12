@@ -5,6 +5,7 @@
 */
 #include <ctime>
 #include <iostream> //std::cout
+#include <fstream>
 #include "ImageIO.h" //Image load and save functionality
 #include "HereBeDragons.h"
 #include "ImageFactory.h"
@@ -82,21 +83,21 @@ int main(int argc, char * argv[]) {
 	std::ofstream results;
 
 	std::vector<std::string> filePaths = {
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/child-1.jpg",
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/female-1.png",
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/female-2.png",
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/female-3.png",
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/male-1.png",
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/male-2.png",
-		"C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/testsets/Set A/TestSet Images/male-3.png",
+		"../../../testsets/Set A/TestSet Images/child-1.jpg",
+		"../../../testsets/Set A/TestSet Images/female-1.png",
+		"../../../testsets/Set A/TestSet Images/female-2.png",
+		"../../../testsets/Set A/TestSet Images/female-3.png",
+		"../../../testsets/Set A/TestSet Images/male-1.png",
+		"../../../testsets/Set A/TestSet Images/male-2.png",
+		"../../../testsets/Set A/TestSet Images/male-3.png"
 	};
 
 	
-	ImageIO::debugFolder = "C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C";
+	ImageIO::debugFolder = "../../../";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	results.open("C:/Users/djrel/Documents/GitHub/HU-Vision-Vera-Florian-V2C/results.csv");
+	results.open("../../../results.csv");
 	results << "File, Implementatie, executiontime\n";
 	for (const auto & path : filePaths) {
 		ImageFactory::setImplementation(ImageFactory::DEFAULT);
