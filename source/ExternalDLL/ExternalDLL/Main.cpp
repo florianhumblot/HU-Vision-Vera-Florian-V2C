@@ -83,11 +83,11 @@ int main(int argc, char * argv[]) {
 	std::ofstream results;
 
 	std::vector<std::string> filePaths = {
-		"../../../testsets/Set A/TestSet Images/child-1.jpg",
-		"../../../testsets/Set A/TestSet Images/female-1.png",
-		"../../../testsets/Set A/TestSet Images/female-2.png",
-		"../../../testsets/Set A/TestSet Images/female-3.png",
-		"../../../testsets/Set A/TestSet Images/male-1.png",
+		//"../../../testsets/Set A/TestSet Images/child-1.jpg",
+		//"../../../testsets/Set A/TestSet Images/female-1.png",
+		//"../../../testsets/Set A/TestSet Images/female-2.png",
+		//"../../../testsets/Set A/TestSet Images/female-3.png",
+		//"../../../testsets/Set A/TestSet Images/male-1.png",
 		"../../../testsets/Set A/TestSet Images/male-2.png",
 		"../../../testsets/Set A/TestSet Images/male-3.png"
 	};
@@ -101,11 +101,11 @@ int main(int argc, char * argv[]) {
 	results << "File, Implementatie, executiontime\n";
 	for (const auto & path : filePaths) {
 		ImageFactory::setImplementation(ImageFactory::DEFAULT);
-		for (unsigned int i = 0; i < 100; i++) {
+		for (unsigned int i = 0; i < 50; i++) {
 			results << path << ", default, " << executeAndMeasure(path) << "\n";
 		}
 		ImageFactory::setImplementation(ImageFactory::STUDENT);
-		for (unsigned int i = 0; i < 100; i++) {
+		for (unsigned int i = 0; i < 50; i++) {
 			results << path << ", student, " << executeAndMeasure(path) << "\n";
 		}
 	}
