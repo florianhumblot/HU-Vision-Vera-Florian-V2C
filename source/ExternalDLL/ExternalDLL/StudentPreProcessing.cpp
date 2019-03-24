@@ -5,7 +5,6 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 	IntensityImage * intensitiyImg = new IntensityImageStudent(image.getWidth(), image.getHeight());
 	for (unsigned int i = 0; i < image.getHeight()*image.getWidth(); i++) {
 		RGB pixelRGB = image.getPixel(i);
-		//int gray = 0.299 * pixelRGB.r + 0.587 * pixelRGB.g + 0.114 * pixelRGB.b;
 		Intensity intens = Intensity(pixelRGB.g);
 		intensitiyImg->setPixel(i, intens);
 	}
